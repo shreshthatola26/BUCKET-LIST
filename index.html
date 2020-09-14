@@ -1,132 +1,121 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+function Book(name, author, type) {  //constructor created. Book object h use banane k lie name , author or type chaheye
+    this.name = name;
+    this.author = author;
+    this.type = type;
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+}
 
-    <title>MyLibrary</title>
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Library</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-           
-            
-            
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </div>
-      </nav>
-      <div class="container my-3">
-        <h1>MyLibrary</h1>
-        <hr>
-      <form id ="libraryForm">
-          <div class="form-group row">
-            <label for="bookName" class="col-sm-2 col-form-label">Name</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="bookName" placeholder="Book Name">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="Author" class="col-sm-2 col-form-label">Author</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="author" placeholder="Author">
-            </div>
-          </div>
-          <fieldset class="form-group">
-            <div class="row">
-              <legend class="col-form-label col-sm-2 pt-0">Type</legend>
-              <div class="col-sm-10">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="type" id="fiction" value="fiction" checked>
-                  <label class="form-check-label" for="fiction">
-                    Fiction
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="type" id="thrill" value="thrill">
-                  <label class="form-check-label" for="Thrill">
-                   Thrill
-                  </label>
-                </div>
-                <div class="form-check disabled">
-                  <input class="form-check-input" type="radio" name="type" id="romance" value="romance" >
-                  <label class="form-check-label" for="Romance">
-                    Romance
-                  </label>
-                </div>
-                <div class="form-check disabled">
-                  <input class="form-check-input" type="radio" name="type" id="horror" value="horror" >
-                  <label class="form-check-label" for="Horror">
-                    Horror
-                  </label>
-                </div>
-                <div class="form-check disabled">
-                  <input class="form-check-input" type="radio" name="type" id="romcom" value="romcom" >
-                  <label class="form-check-label" for="Rom-Com">
-                  Rom-Com
-                  </label>
-                </div>
-              </div>
-            </div>
-          </fieldset>
-          
-          <div class="form-group row">
-            <div class="col-sm-10">
-              <button type="submit" class="btn btn-info">Add Book</button>
-            </div>
-          </div>
-          <hr>
-        </form>
-        <div id="table">
-            <h1>Your selected books</h1>
-            <table class="table table-hover">
-                <thead class="thead-dark">
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Author</th>
-                    <th scope="col">Type</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                 
-                </tbody>
-              </table>
+//display constructor
+
+function Display() {  //esk prototype m kuch methods dalenge  jo ki reponsible hoga book ko UI m add krne k lie
+
+
+}
+
+//add methods to display prototype
+Display.prototype.add = function (book) {
+    console.log('adding to UI')
+    tableBody = document.getElementById('tableBody') //tableBody k andr ye bi daldo 
+    let uiString = ` 
+    <tr>
+                    
+    <td>${book.name}</td>
+    <td>${book.author}</td>
+    <td>${book.type}</td>
+  </tr>
+    
+    
+    `
+
+    tableBody.innerHTML += uiString; //innerHTML m uistring daldo
+
+}
+
+
+//implementig the clear function
+Display.prototype.clear = function () {
+    let libraryForm = document.getElementById('libraryForm')
+    libraryForm.reset() //form ki id li or use reset krdia
+}
+
+//implementig the validate function
+Display.prototype.validate = function (book) {
+   if (book.name.length<2 || book.author.length<2 )
+   {
+       return false
+   }
+   else {
+       return true
+   }
+}
+
+//implementing the show function
+Display.prototype.show = function (type, displayMessage) {
+   let message= document.getElementById('message')
+   message.innerHTML = `<div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                                        <strong></strong> ${displayMessage}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+   </button>`
+    
+ }
 
 
 
-    </div>
-    <script src="js/index.js"></script>
+//add submit event listener to libraryForm
+let libraryForm = document.getElementById('libraryForm')
+libraryForm.addEventListener('submit', libraryFormSubmit)
 
-      
-  
+function libraryFormSubmit(e) { //jb b hm library form ko submit krenge ye function run hoi jaega
+    console.log('you have submitted library form')
+    let name = document.getElementById('bookName').value
+    let author = document.getElementById('author').value
+    //fiction , thrill , romance , horror , Rom-com
+    let fiction = document.getElementById('fiction')
+    let thrill = document.getElementById('thrill')
+    let romance = document.getElementById('romance')
+    let horror = document.getElementById('horror')
+    let romcom = document.getElementById('romcom')
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-  </body>
-</html>
+    let type
+
+    if (fiction.checked) {
+        type = fiction.value
+    }
+    else if (thrill.checked) {
+        type = thrill.value
+    }
+    else if (romance) {
+        type = romance.value
+    }
+    else if (horror.checked) {
+        type = horror.value
+    }
+    else if (romcom.checked) {
+        type = romcom.value
+    }
+
+    let book = new Book(name, author, type) //book object created
+    console.log(book)
+
+    let display = new Display()
+
+    if (display.validate(book)) {  //pehle valiodate krdo agr valid hua toe add krna else not
+
+
+        display.add(book)  //book ko add kr dega 
+
+        display.clear() //display m jo values dali thi vo delete kr dega .Ab hm ise dlenge prototype m upar banae hue function m
+
+        display.show('success' , 'Added')
+    }
+    else {
+        //show error to user
+        display.show('danger' , 'Sorry you cannot add this')
+
+    }
+
+
+    e.preventDefault() //jb bhi we are adding new book the page gets reloaded coz it tthe the property of form that after every submit it gets reloaded therefore we are preventing this byu this function
+
+}
