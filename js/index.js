@@ -119,3 +119,4 @@ function libraryFormSubmit(e) { //jb b hm library form ko submit krenge ye funct
     e.preventDefault() //jb bhi we are adding new book the page gets reloaded coz it tthe the property of form that after every submit it gets reloaded therefore we are preventing this byu this function
 
 }
+ 
