@@ -59,7 +59,7 @@ Display.prototype.show = function (type, displayMessage) {
    </button>`
     
  }
-
+ 
 
 
 //add submit event listener to libraryForm
