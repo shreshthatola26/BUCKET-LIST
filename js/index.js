@@ -1,3 +1,4 @@
+
 function Book(name, author, type) {  //constructor created. Book object h use banane k lie name , author or type chaheye
     this.name = name;
     this.author = author;
@@ -8,6 +9,8 @@ function Book(name, author, type) {  //constructor created. Book object h use ba
 //display constructor
 
 function Display() {  //esk prototype m kuch methods dalenge  jo ki reponsible hoga book ko UI m add krne k lie
+
+    
 
 
 }
@@ -52,14 +55,24 @@ Display.prototype.validate = function (book) {
 //implementing the show function
 Display.prototype.show = function (type, displayMessage) {
    let message= document.getElementById('message')
+   let boldTxt;
+        if(type==='success'){
+            boldTxt = 'Success';
+        }
+        else{
+            boldTxt = 'Error!';
+        }
    message.innerHTML = `<div class="alert alert-${type} alert-dismissible fade show" role="alert">
-                                         <strong></strong> ${displayMessage}
+                                        <strong>${boldTxt}</strong> ${displayMessage}
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
    </button>`
+   setTimeout(function()  {
+       message.innerHTML= ' '
+   }, 2000);
     
  }
- 
+
 
 
 //add submit event listener to libraryForm
@@ -118,6 +131,33 @@ function libraryFormSubmit(e) { //jb b hm library form ko submit krenge ye funct
 
     e.preventDefault() //jb bhi we are adding new book the page gets reloaded coz it tthe the property of form that after every submit it gets reloaded therefore we are preventing this byu this function
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
- 
- 
