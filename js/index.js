@@ -17,7 +17,7 @@ function Display() {  //esk prototype m kuch methods dalenge  jo ki reponsible h
 
 //add methods to display prototype
 Display.prototype.add = function (book) {
-    console.log('adding to UI')
+    console.log('adding to User Interface')
     tableBody = document.getElementById('tableBody') //tableBody k andr ye bi daldo 
     let uiString = ` 
     <tr>
